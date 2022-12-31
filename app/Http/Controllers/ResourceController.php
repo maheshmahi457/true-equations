@@ -68,12 +68,12 @@ class ResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
         $objPosts = new Post;
-        $result = $objPosts->dbTable('p')
-        ->leftJoin('comments as c','c.post_id','p.id')
-        ->where('id',$id)->where('user_id',\Auth::user()->id)->get();
+        $result = $objPosts->select('posts.id','c.comment','posts.content')
+        ->leftJoin('comments as c','c.post_id','posts.id')
+        ->where('posts.id',$request->id)->where('posts.user_id',\Auth::user()->id)->get();
         return $result;
     }
 

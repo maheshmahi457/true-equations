@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 
 Route::any('createPost','App\Http\Controllers\ResourceController@store');
 
-Route::get('showPost/id','App\Http\Controllers\ResourceController@show');
+Route::get('showPost','App\Http\Controllers\ResourceController@show');
 
 
 require __DIR__.'/auth.php';
